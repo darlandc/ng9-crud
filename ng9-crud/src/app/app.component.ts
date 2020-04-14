@@ -1,3 +1,4 @@
+import { ProductsService } from './services/products.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ng9-crud';
+
+  constructor(private productService: ProductsService){}
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit(): void {
+    this.productService.getAll().subscribe(
+      (res) => { console.log(res); },
+      (err) => { console.log(err); }
+    );
+  }
+
+
 }
